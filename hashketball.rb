@@ -31,6 +31,11 @@ def num_points_scored(name)
     game_hash.each do |team, data|
       game_hash[team][:players].each do |player_name, stats|
         if name == player_name
+
+  points = nil
+  game_hash.each do |team, attributes|
+    game_hash[team][:players].each do |key, value|
+      if name == key
         points = game_hash[team][:players][name][:points]
       end
     end
@@ -85,7 +90,6 @@ def player_numbers(team_name)
   end
   jersey_numbers
 end
-
 
 def player_stats(player_name)
   player_deits = {}
