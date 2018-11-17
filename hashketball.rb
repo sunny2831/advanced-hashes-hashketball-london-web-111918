@@ -1,4 +1,4 @@
-require 'pry' # Write your code here!
+ # Write your code here!
 def game_hash
   game_hash = {
     :home => {
@@ -31,16 +31,11 @@ def num_points_scored(name)
     game_hash.each do |team, data|
       game_hash[team][:players].each do |player_name, stats|
         if name == player_name
-
-  points = nil
-  game_hash.each do |team, attributes|
-    game_hash[team][:players].each do |key, value|
-      if name == key
-        points = game_hash[team][:players][name][:points]
-      end
-    end
-  end
-  points
+           points = game_hash[team][:players][name][:points]
+        end
+     end
+   end
+   points
 end
 
 def shoe_size(name)
@@ -105,4 +100,28 @@ def player_stats(player_name)
     end
   end
   player_deits
+end
+
+def big_shoe_rebounds
+  biggest_shoe = 0
+  player_w_biggest_shoe = nil
+  player_rebounds = nil
+  game_hash.each do |team, attributes|
+    game_hash[team].each do |attribute, value|
+      if attribute == :players
+        game_hash[team][:players].each do |player, stats|
+          game_hash[team][:players][player].each do |stat, val|
+            if stat == :shoe && val > biggest_shoe
+              biggest_shoe = val
+              player_w_biggest_shoe = player
+            end
+          end
+          if player == player_w_biggest_shoe
+            player_rebounds = game_hash[team][:players][player][:rebounds]
+          end
+        end
+      end
+    end
+  end
+  player_rebounds
 end
